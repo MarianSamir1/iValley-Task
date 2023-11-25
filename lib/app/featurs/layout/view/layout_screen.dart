@@ -10,11 +10,11 @@ class LayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = LayoutCubit.get(context);
     return BlocBuilder<LayoutCubit, LayoutState>(
       builder: (context, state) => Scaffold(
         appBar: appBar(context),
-        body: LayoutCubit.get(context)
-            .taps[LayoutCubit.get(context).currentIndex],
+        body: cubit.taps[cubit.currentIndex],
         bottomNavigationBar: const BottomNavigationBarWidget(),
       ),
     );

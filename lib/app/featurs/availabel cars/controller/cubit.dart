@@ -22,9 +22,11 @@ class CarCubit extends Cubit<CarState> {
         await CarApis.getAllAvilableCar(pageNumber: currentPage);
 
     if (getAllAvailableCarsResponce.errorFlag == false) {
-      getAllAvailableCarsResponce.values.forEach((v) {
-        lisOfAllAvailableCars.add(CarModel.fromJson(v));
-      });
+      if (getAllAvailableCarsResponce.values.isNotEmpty) {
+        getAllAvailableCarsResponce.values.forEach((v) {
+          lisOfAllAvailableCars.add(CarModel.fromJson(v));
+        });
+      }
       isLoading = false;
       log("======= first available car name : ${lisOfAllAvailableCars[0].fullName} ==== ");
       emit(GetAllAvailableCarsSuccessState());
@@ -35,23 +37,10 @@ class CarCubit extends Cubit<CarState> {
 
   final ScrollController scrollController = ScrollController();
   int currentPage = 1;
-  int totalPages = 0;
   bool isLoading = false;
 
-  void scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
-      if (!isLoading && currentPage < totalPages) {
-        isLoading = true;
-        currentPage++;
-        emit(PaginationState());
-        getAllAvailableCars();
-      }
-    }
-  }
-
   paginationFun() {
-    if (isLoading == false && currentPage < 10) {
+    if (isLoading == false && currentPage < 100) {
       isLoading = true;
       currentPage++;
       emit(PaginationState());

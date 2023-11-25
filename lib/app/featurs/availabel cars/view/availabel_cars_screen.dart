@@ -15,7 +15,7 @@ class AvailabelCarScreen extends StatelessWidget {
         body: SafeArea(
           child: Center(
             child: Padding(
-              padding: EdgeInsets.all(8.r),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
               child: const CarsListWidget(),
             ),
           ),

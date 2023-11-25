@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ivally_task/app/featurs/layout/controller/cubit.dart';
 import 'package:ivally_task/app/featurs/layout/controller/states.dart';
+import 'package:ivally_task/utilities/constants/constatnts.dart';
 import 'package:ivally_task/utilities/styles/colors.dart';
+
+import 'bottom_navigation_widget.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});
@@ -14,43 +17,25 @@ class BottomNavigationBarWidget extends StatelessWidget {
         onDestinationSelected: (int index) {
           LayoutCubit.get(context).changeLayoutBody(index: index);
         },
-        indicatorColor: Colors.indigo,
+        indicatorColor: ColorManager.primaryColor,
         selectedIndex: LayoutCubit.get(context).currentIndex,
-        destinations: <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(
-              Icons.car_repair,
-              color: ColorManager.white,
-            ),
-            icon: const Icon(
-              Icons.car_repair,
-            ),
-            label: 'سيارات متاحه',
+        destinations: const <Widget>[
+          BottomNavigationWidget(
+            icon: Icons.car_repair,
+            label: Constants.availabelCars,
           ),
-          NavigationDestination(
-            selectedIcon: Icon(
-              Icons.calendar_month,
-              color: ColorManager.white,
-            ),
-            icon: const Icon(Icons.calendar_month),
-            label: 'صفقات يوميه',
+          BottomNavigationWidget(
+            icon: Icons.calendar_month,
+            label: Constants.dailyDeals,
           ),
-          NavigationDestination(
-            selectedIcon: Icon(
-              Icons.search,
-              color: ColorManager.white,
-            ),
-            icon: const Icon(Icons.search),
-            label: 'بحث عام',
+          BottomNavigationWidget(
+            icon: Icons.search,
+            label: Constants.generlSerch,
           ),
-          NavigationDestination(
-            selectedIcon: Icon(
-              Icons.add_circle_outline_outlined,
-              color: ColorManager.white,
-            ),
-            icon: const Icon(Icons.add_circle_outline_outlined),
-            label: 'اضافة اعلان',
-          ),
+          BottomNavigationWidget(
+            icon: Icons.add_circle_outline_outlined,
+            label: Constants.addAdvertiseng,
+          )
         ],
       ),
     );

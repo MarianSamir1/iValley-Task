@@ -33,6 +33,7 @@ class CarCardWidget extends StatelessWidget {
                     EndPoints.baseUrl + carModel!.mainImagePath!,
                     fit: BoxFit.fill,
                     height: double.infinity,
+                    errorBuilder: (c, o, t) => Container(),
                   ),
                 ),
               ),
